@@ -5,7 +5,7 @@ import subprocess
 from .config import xfce_displays
 
 
-def set_background(file_path):
+def set_background(file_path, verbose=False):
     de = get_desktop_environment()
 
     if de in ["gnome", "unity", "cinnamon", "pantheon", "gnome-classic"]:
@@ -29,12 +29,12 @@ def set_background(file_path):
                          'set the picture of aDesktop to \"' + file_path + '"\nend repeat\nend tell'])
         subprocess.call(["killall", "Dock"])
     elif has_program("feh"):
-        print("\nCouldn't detect your desktop environment ('{}'), but you have"
+        if verbose: print("\nCouldn't detect your desktop environment ('{}'), but you have"
               "'feh' installed so we will use it.".format(de))
         os.environ['DISPLAY'] = ':0'
         subprocess.call(["feh", "--bg-fill", file_path])
     elif has_program("nitrogen"):
-        print("\nCouldn't detect your desktop environment ('{}'), but you have "
+        if verbose: print("\nCouldn't detect your desktop environment ('{}'), but you have "
               "'nitrogen' installed so we will use it.".format(de))
         os.environ["DISPLAY"] = ':0'
         subprocess.call(["nitrogen", "--restore"])
