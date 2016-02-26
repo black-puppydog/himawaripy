@@ -32,7 +32,7 @@ def set_background(file_path):
         print("\nCouldn't detect your desktop environment ('{}'), but you have"
               "'feh' installed so we will use it.".format(de))
         os.environ['DISPLAY'] = ':0'
-        subprocess.call(["feh", "--bg-max", file_path])
+        subprocess.call(["feh", "--bg-fill", file_path])
     elif has_program("nitrogen"):
         print("\nCouldn't detect your desktop environment ('{}'), but you have "
               "'nitrogen' installed so we will use it.".format(de))
