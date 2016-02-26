@@ -1,4 +1,5 @@
-from os.path import expanduser
+from os.path import expanduser, dirname
+import os
 
 # Increases the quality and the size. Possible values: 4, 8, 16, 20
 level = 4
@@ -13,6 +14,7 @@ hour_offset = 0
 
 # Path to the output file
 output_file = expanduser("~/.himawari/himawari-latest.png")
+os.makedirs(dirname(output_file), exist_ok=True)
 
 # Xfce4 displays to change the background of
 xfce_displays = ["/backdrop/screen0/monitor0/image-path",
